@@ -1,6 +1,7 @@
 
-#### Installation
-The code was developed using Python 2.7 & PyTorch 0.2 & CUDA 8.0. There may be a problem related to software versions. To fix the problem, you may look at the implementation in PWCNet.py and replace the syntax to match the new pytorch environment. 
+## Installation
+The code was tested using Python 2.7 & PyTorch 0.2 & CUDA 9.0. (Zhaoyang's update: Jan 18, 2019) There are some todos in the correlation modules to migrate the torch.utils.ffi module into the new ATensor implementation. 
+
 Install correlation package (if you haven't installed this package before):
 - Go to external_packages/correlation-pytorch-master/, follow the instruction in the readme.MD file there
 - You might have to run the command in make_cuda.sh line by line
@@ -11,36 +12,36 @@ Additionally, we provide a simple installation script using Anaconda for the abo
 conda create -n pwcnet_test python=2.7 anaconda
 conda activate pwcnet_test
 # install pytorch and other dependencies
-pip install http://download.pytorch.org/whl/cu80/torch-0.2.0.post3-cp27-cp27mu-manylinux1_x86_64.whl
+pip install https://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl 
 pip install torchvision visdom dominate opencv-python cffi
 # install external packages 
 cd external_packages/correlation-pytorch-master/
 bash make_cuda.sh
 cd ../../
 ```
-#### Test
+## Test
 -  Test the code: execute script_pwc.py [image1_filename] [image2_filename] [save_flow_filename], e.g. 
 	 ```python script_pwc.py './data/frame_0010.png' './data/frame_0011.png' './tmp/frame_0010.flo'```
 -  pwc_net_chairs.pth.tar is the pretrained weight using flyingthings3D dataset
 -  pwc_net.pth.tar is the fine-tuned weight on MPI Sintel
 
 
-#### Stuffs that may confuse you:
+## Stuffs that may confuse you:
 - the RGB channel is reversed to BGR, because this is what Caffe does
 - after dividing by 255.0, no further normalization is conducted, because this particular PWC model in Caffe don't perform any image normalizations
 - estimated flow should multiply by 20.0, because in training, the GT flow is divided by 20.0
 
 
-#### Note
+## Note
 - The PyTorch code does not fully reproduce the results by the Caffe code because of differences in implementation details, such as resizing and image I/O. Please use the Caffe code to reproduce the PWC-Net results in the CVPR paper and the ROB challenge
 - The average EPE at MPI Sintel is 1.83 (clean) and 2.31 (final). For the official Caffe implementation, the average EPE is 1.81 (clean) and 2.29 (final)
 
 
-#### Acknowledgement
+## Acknowledgement
 - Thanks to Dr. Jinwei Gu and Dr. Zhile Ren for writing the PyTorch code and converting the Caffe model into PyTorch
 - Thanks to Dr. Fitsum Reda for providing the wrapper to the correlation code
 
-#### Paper & Citation
+## Paper & Citation
 Deqing Sun, Xiaodong Yang, Ming-Yu Liu, Jan Kautz. PWC-Net: CNNs for Optical Flow Using Pyramid, Warping, and Cost Volume. CVPR 2018 Oral. 
 Sun, Deqing, Xiaodong Yang, Ming-Yu Liu, and Jan Kautz. "PWC-Net: CNNs for Optical Flow Using Pyramid, Warping, and Cost Volume." arXiv preprint arXiv:1709.02371(https://arxiv.org/abs/1709.02371), 2017.
 Project webpage: http://research.nvidia.com/publication/2018-02_PWC-Net:-CNNs-for
