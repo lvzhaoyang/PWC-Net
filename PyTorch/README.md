@@ -1,6 +1,6 @@
 
 ## Installation
-The code was tested using Python 2.7 & PyTorch 0.2 & CUDA 9.0. (Zhaoyang's update: Jan 18, 2019) There are some todos in the correlation modules to migrate the torch.utils.ffi module into the new ATensor implementation. 
+The code was tested using Python 2.7 & PyTorch 0.4 & CUDA 9.0. (Zhaoyang's update: Jan 18, 2019) There are some todos in the correlation modules to migrate the torch.utils.ffi module into the new ATensor implementation. 
 
 Install correlation package (if you haven't installed this package before):
 - Go to external_packages/correlation-pytorch-master/, follow the instruction in the readme.MD file there
